@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="description" content="Esto es una aplicacion con PWA" />
+    <meta name="keywords" content="Canal de Youtube Web Developer Urian Viera"/>
+    <meta name="author" content="Lizbeth Web Developer" />
+    <meta name="copyright" content="Web Developer" />
+    <meta name="language" content="es-CO"/>
+
+    <title>PWA :: BBVA</title>
+    <link type="text/css" rel="shortcut icon" href="imgs/favicon.ico"/>
+    <link rel="stylesheet" href="css/home.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="./manifest.json">
+    <!-- PWA -->
+
+    <!-- METAS DE PWA -->
+    <meta name="theme-color" content="#2F3BA2">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="shortcut icon" type="image/png" href="./pwa/images/icons/icon-512x512.png">
+    <link rel="apple-touch-icon" href="./pwa/images/icons/icon-512x512.png">
+    <link rel="apple-touch-startup-image" href="./pwa/images/icons/icon-512x512.png">
+
+    <link rel="apple-touch-icon" href="./pwa/images/icons/icon-72x72.png" />
+    <!-- ... (otros tamaños de iconos) ... -->
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2; /* Fondo gris claro */
+        }
+
+        .navbar {
+            background-color: #041549; /* Color azul */
+            color: #fff;
+            padding: 10px;
+            text-align: center; /* Alineación al centro */
+            width: 100%;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 10px;
+            display: inline-block; /* Para que los elementos estén en línea */
+        }
+
+        .login-container {
+            display: none; /* Ocultar el contenedor de inicio de sesión al cargar la página */
+            text-align: center;
+            background-color: #fff; /* Fondo blanco */
+            border-radius: 5px;
+            padding: 100px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1; /* Asegura que esté encima del carrusel */
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0072CE; /* Color azul */
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button.blue-button {
+            background-color: #0072CE; /* Color azul */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button.blue-button:hover {
+            background-color: #00529B; /* Color azul oscuro al pasar el mouse */
+        }
+
+        .swiper-container {
+            width: 100%;
+            max-width: 600px; /* Ancho máximo del carrusel */
+            margin: 20px auto; /* Centra horizontalmente */
+            z-index: 0; /* Coloca el carrusel detrás del contenedor de inicio de sesión */
+        }
+
+        .swiper-slide img {
+            width: 100%;
+        }
+
+        .warning-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+
+        footer {
+            background-color: #041549; /* Color azul */
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="index.html">BBVA</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="nosotros_somos.html">Nosotros Somos</a>
+        <button id="acceso-button" class="green-button">Acceso</button>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex mt-3" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="login-container" id="login-container">
+        <span class="close-button" onclick="closeContainer()">&#10006;</span>
+        <h1>Bienvenido !</h1>
+        <div id="warning-message" class="warning-message">Por favor, ingrese su número de tarjeta.</div>
+        <input id="tarjeta-input" type="text" placeholder="Número de tarjeta">
+        <a href="registro.html">Registrar</a>
+        <button class="blue-button" onclick="validateTarjeta()">Continuar</button>
+    </div>
+
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./img/1.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="./img/2.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="./img/3.png" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <button id="install-button" style="display: none;">Instalar</button>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            }
+        });
+
+        function closeContainer() {
+            var loginContainer = document.getElementById("login-container");
+            loginContainer.style.display = "none";
+        }
+
+        var accesoButton = document.getElementById("acceso-button");
+        accesoButton.addEventListener("click", function() {
+            var loginContainer = document.getElementById("login-container");
+            loginContainer.style.display = "block"; // Mostrar el contenedor de inicio de sesión
+        });
+
+        function validateTarjeta() {
+            var tarjetaInput = document.getElementById("tarjeta-input");
+            var warningMessage = document.getElementById("warning-message");
+            if (tarjetaInput.value === "") {
+                warningMessage.style.display = "block"; // Mostrar la advertencia si el campo de tarjeta está vacío
+            } else {
+                warningMessage.style.display = "none"; // Ocultar la advertencia si se ingresó un número de tarjeta válido
+                // Redirigir a otra página
+                window.location.href = "bbva.html"; // Reemplaza "otra_pagina.html" con la URL de la página a la que deseas redirigir
+            }
+        }
+    </script>
+
+    <footer>
+        Creado por Lizbeth Chac
+
+        <script src="./js/bootstrap.bundle.min.js"></script>
+        <script src="./js/jquery-3.6.0.js"></script>
+        <script src="./regist_serviceWorker.js"></script>
+        <script>
+            $(function(){
+                setTimeout(
+                    ()=>{
+                        $(".cargando").hide(); 
+                    } , 50
+                );
+            });
+        </script>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+    <title>Mi Sitio Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        #navbar {
+            background-color: #001f3f;
+            color: #ffffff;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1;
+            text-align: center;
+        }
+
+        #navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .active {
+            color: #ffffff;
+        }
+
+        .carousel-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .carousel {
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+            margin: 20px;
+        }
+
+        .carousel-item {
+            flex: 0 0 30%;
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            margin-right: 20px;
+            transition: transform 0.2s;
+        }
+
+        .carousel-item:hover {
+            transform: scale(1.05);
+        }
+
+        .carousel-item img {
+            max-width: 50%;
+            height: auto;
+            width: 50%;
+            border-radius: 50%;
+        }
+
+        .carousel-item p {
+            font-weight: bold;
+        }
+
+        .ver-todos {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .ver-todos a {
+            color: rgb(0, 157, 255);
+            text-decoration: none;
+        }
+
+        /* Estilos para el contenedor gris con la tabla */
+        .cuentas-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: none;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .numero-cuenta {
+            font-weight: bold;
+            color: blue;
+        }
+
+        .saldo {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .saldo-total {
+            font-weight: bold;
+            color: blue;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .saldo-link {
+            text-decoration: none;
+            color: blue;
+        }
+
+        /* Estilos para el mensaje de transferencia exitosa */
+        .transfer-success {
+            background-color: #4caf50;
+            color: #ffffff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        /* Estilos para la pantalla de transferencia simulada */
+        .transfer-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        /* Estilos para el formulario de transferencia */
+        .transfer-form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .transfer-label, .transfer-input, .transfer-button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .transfer-button {
+            background-color: #4caf50;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #041549; /* Color azul */
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <span style="font-size: 24px;">BBVA</span>
+        <a href="bbva.html"><i class="fas fa-globe"></i> HOME</a>
+        <a href="datos.html"><i class="fas fa-user"></i> MIS CUENTAS</a>
+        <a href="#contacto"></a>
+        <a href="#contacto"></a>
+        <a href="#contacto"></a>
+        <a href="#contacto"></a>
+        <a href="#contacto"></a>
+        <a href="#contacto"></a>
+        <a href="#contacto"><i class="fas fa-building"></i> Corporativo</a>
+        <a href="#nosotros"><i class="fas fa-user-circle"></i> Acceso</a>
+        <a href="#nosotros"><i class="fas fa-user-plus"></i> Hazte Cliente</a>
+        <a href="#nosotros"><i class="fas fa-bars"></i> Menu</a>
+    </div>
+   
+    </div>
+    <div class="cuentas-container">
+        <h2>Cuentas</h2>
+        <table>
+            <tr>
+                <th>Tipo de Cuenta</th>
+                <th>Número de Cuenta</th>
+                <th>Saldo Disponible (en pesos)</th>
+            </tr>
+            <tr>
+                <td>Cuenta de Ahorro</td>
+                <td class="numero-cuenta">123456789</td>
+                <td class="saldo" id="saldo-ahorro">$10,000.00</td>
+            </tr>
+            <tr>
+                <td>Cuenta Corriente</td>
+                <td class="numero-cuenta">987654321</td>
+                <td class="saldo" id="saldo-corriente">$15,000.00</td>
+            </tr>
+        </table>
+        <a href="datos.html" class="saldo-link">Ver Saldo</a> | <a href="transfer.html" class="saldo-link">Hacer Transferencia</a>
+        <p class="saldo-total" id="saldo-total">Saldo Total Disponible: $25,000.00</p>
+        <hr>
+        <h2>Realizar Transferencia</h2>
+        <div class="transfer-form">
+            <select id="transfer-type">
+                <option value="a-personas">A Personas</option>
+                <option value="mis-cuentas">Mis Cuentas</option>
+            </select>
+            <br>
+            <label for="amount" class="transfer-label">Cantidad a transferir:</label>
+            <input type="text" id="amount" class="transfer-input" placeholder="Especifique el monto">
+            <br>
+            <button id="transfer-button" class="transfer-button">Transferir</button>
+        </div>
+    </div>
+
+    <!-- Mensaje de transferencia exitosa -->
+    <div id="transferSuccess" class="transfer-success">
+        ¡Transferencia realizada con éxito!
+    </div>
+
+    <!-- Pantalla de transferencia simulada -->
+    <div id="transferScreen" class="transfer-screen">
+        Transfiriendo fondos...
+    </div>
+
+    <script>
+        // Función para manejar la transferencia
+        document.getElementById('transfer-button').addEventListener('click', function() {
+            const transferType = document.getElementById('transfer-type').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+
+            if (isNaN(amount) || amount <= 0) {
+                alert('Por favor, ingrese una cantidad válida.');
+                return;
+            }
+
+            let saldoAhorro = parseFloat(document.getElementById('saldo-ahorro').textContent.replace('$', '').replace(',', ''));
+            let saldoCorriente = parseFloat(document.getElementById('saldo-corriente').textContent.replace('$', '').replace(',', ''));
+
+            if (transferType === 'a-personas') {
+                saldoAhorro -= amount;
+            } else if (transferType === 'mis-cuentas') {
+                // Agrega tu lógica personalizada aquí
+            }
+
+            if (saldoAhorro < 0 || saldoCorriente < 0) {
+                alert('Fondos insuficientes para realizar la transferencia.');
+                return;
+            }
+
+            // Mostrar la pantalla de transferencia simulada
+            document.getElementById('transferScreen').style.display = 'flex';
+
+            // Simular un tiempo de espera y luego restar la transferencia y ocultar la pantalla
+            setTimeout(function(){
+                document.getElementById('saldo-ahorro').textContent = `$${saldoAhorro.toFixed(2)}`;
+                document.getElementById('saldo-corriente').textContent = `$${saldoCorriente.toFixed(2)}`;
+                document.getElementById('saldo-total').textContent = `Saldo Total Disponible: $${(saldoAhorro + saldoCorriente).toFixed(2)}`;
+
+                // Ocultar la pantalla de transferencia simulada
+                document.getElementById('transferScreen').style.display = 'none';
+
+                // Mostrar el mensaje de transferencia exitosa
+                document.getElementById("transferSuccess").style.display = "block";
+
+                // Simular un tiempo de espera y luego ocultar el mensaje
+                setTimeout(function(){
+                    document.getElementById("transferSuccess").style.display = "none";
+                }, 3000); // 3000 milisegundos (3 segundos)
+            }, 3000); // 3000 milisegundos (3 segundos)
+        });
+    </script>
+  
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+       <footer>
+        Creado por Lizbeth Chac
+    </footer>
+</body>
+</html>
